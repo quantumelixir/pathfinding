@@ -1,0 +1,15 @@
+type octile
+height 11
+width 25
+map
+WWWWWWWWWWWWWWWWWWWWWWWWW
+WW.......WWWWWW......W..W
+W......W..WWWWW......W..W
+W.........WWWWW.W....WWWW
+W..WWWW...............W.W
+W..WWWW...TTTTT.W....WW.W
+W..WWWW...TTTTT.....WW..W
+W..................WW...W
+W..................T....W
+WW.......WWWWWW....T....W
+WWWWWWWWWWWWWWWWWWWWWWWWW
