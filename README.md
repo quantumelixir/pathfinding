@@ -44,6 +44,17 @@ Efficient C++ pathfinders on 2D grids using variations of A* search.
                 int* pOutBuffer, const int nOutBufferSize);
 ```
 
+   Depending on the particular algorithm you choose from
+   `pathfinders.h` the name of the function would change. For example
+   in grids with 8 neighbors per location you would call one with the
+   `Diag` suffix.
+
+## What algorithms does it currently implement?
+
+   Breadth first search, A* using the Manhattan distance heuristic
+   with/without tiebreaking, and A* with lower bound computation using
+   landmarks.
+
 # Example
 
   Currently you can run benchmarks to compare the different algorithms like this.
@@ -68,5 +79,6 @@ make # might fail because you don't have boost installed
 
   Some cool related stuff.
 
-  [l1 pathfinder](http://mikolalysenko.github.io/l1-path-finder/www/)
-  [Map source for benchmarks](http://www.movingai.com/benchmarks/)
+  * [l1 pathfinder](http://mikolalysenko.github.io/l1-path-finder/www/)
+  * [Map source for benchmarks](http://www.movingai.com/benchmarks/)
+
