@@ -2,42 +2,40 @@
 #include <vector>
 #include <algorithm>
 #include <ctime>
-#include <boost/random/random_device.hpp>
-#include <boost/random/uniform_int_distribution.hpp>
-
-using namespace std;
-
+#include <cstring>
+#include <random>
 #include "pathfinders.h"
+
 
 int main() {
 
   int width, height;
 
-  string temp;
-  getline(cin, temp);
-  cin >> temp; cin >> height;
-  cin >> temp; cin >> width;
-  getline(cin, temp);
+  std::string temp;
+  getline(std::cin, temp);
+  std::cin >> temp; std::cin >> height;
+  std::cin >> temp; std::cin >> width;
+  getline(std::cin, temp);
 
-  vector<unsigned char> passable{'.', 'G', 'S'};
+  std::vector<unsigned char> passable{'.', 'G', 'S'};
   unsigned char* pMap = new unsigned char[height*width];
 
-  vector<int> traversable;
+  std::vector<int> traversable;
   for (int i = 0; i < width; i++)
     for (int j = 0; j < height; j++) {
-      char c; cin >> c;
+      char c; std::cin >> c;
       pMap[width*j + i] = (count(passable.begin(), passable.end(), c) > 0);
       if (count(passable.begin(), passable.end(), c) > 0)
-	traversable.push_back(width*j + i);
+        traversable.push_back(width*j + i);
     }
 
   // const int bufsize = height*width;
   // int* pOutBuffer = new int[height*width];
 
-  boost::random::random_device rng;
-  boost::random::uniform_int_distribution<> uniform(0, traversable.size() - 1);
+  std::random_device rng;
+  std::uniform_int_distribution<> uniform(0, traversable.size() - 1);
   const int TIMES = 100;
-  vector<pair<int, int>> tests;
+  std::vector<std::pair<int, int>> tests;
   for (int t = 0; t < TIMES; t++) {
     int u = traversable[uniform(rng)];
     int v = traversable[uniform(rng)];
@@ -49,14 +47,14 @@ int main() {
   // BENCHMARKING CODE //
   //                   //
 
-  for (auto PathFinder : {make_pair(BFSFindPath, "BFS"),
-	make_pair(AStarFindPath, "AStar"),
-	make_pair(AStarFindPathLandmarks, "AStarLandmarks"),
-	make_pair(AStarFindPathNoTie, "AStarNoTie"),
-	make_pair(BFSFindPathDiag, "BFSDiag"),
-	make_pair(AStarFindPathDiag, "AStarDiag"),
-	make_pair(AStarFindPathLandmarksDiag, "AStarLandmarksDiag"),
-	make_pair(AStarFindPathNoTieDiag, "AStarNoTieDiag")}) {
+  for (auto PathFinder : {std::make_pair(BFSFindPath, "BFS"),
+	std::make_pair(AStarFindPath, "AStar"),
+	std::make_pair(AStarFindPathLandmarks, "AStarLandmarks"),
+	std::make_pair(AStarFindPathNoTie, "AStarNoTie"),
+	std::make_pair(BFSFindPathDiag, "BFSDiag"),
+	std::make_pair(AStarFindPathDiag, "AStarDiag"),
+	std::make_pair(AStarFindPathLandmarksDiag, "AStarLandmarksDiag"),
+	std::make_pair(AStarFindPathNoTieDiag, "AStarNoTieDiag")}) {
 
     if (!strncmp(PathFinder.second, "AStarLandmarks", 14)) {
       Landmarks.clear();
@@ -74,7 +72,7 @@ int main() {
     long long tot = 0;
     const clock_t begin_time = clock();
     for (int t = 0; t < TIMES; t++) {
-      pair<int, int> u = tests[2*t], v = tests[2*t + 1];
+      std::pair<int, int> u = tests[2*t], v = tests[2*t + 1];
       PathFinder.first(u.first, u.second, v.first, v.second,
 		       pMap, width, height, NULL, 0);
       // printf("(%4d, %4d) -> (%4d, %4d) :: %8d (%.2f)\n", u.first, u.second, v.first, v.second,

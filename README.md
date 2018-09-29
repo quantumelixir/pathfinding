@@ -61,7 +61,7 @@ Efficient C++ pathfinders on 2D grids using variations of A* search.
 
 ```bash
 make # might fail because you don't have boost installed
-./a.out < maps/starcraft/GhostTown.map
+./path_test < maps/starcraft/GhostTown.map
 ```
 
 ```
