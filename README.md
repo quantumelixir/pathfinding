@@ -60,8 +60,8 @@ Efficient C++ pathfinders on 2D grids using variations of A* search.
   Currently you can run benchmarks to compare the different algorithms like this.
 
 ```bash
-make # might fail because you don't have boost installed
-./a.out < maps/starcraft/GhostTown.map
+make
+./path_test < maps/starcraft/GhostTown.map
 ```
 
 ```
